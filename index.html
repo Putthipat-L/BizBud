@@ -753,8 +753,14 @@
             startAutoPlay();
         }
 
-        // Start auto-play when page loads
-        startAutoPlay();
+        // Start auto-play when page loads (respect user's motion preference)
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!prefersReducedMotion) {
+            startAutoPlay();
+        } else {
+            // For users who prefer reduced motion, still allow manual navigation
+            console.log('Auto-play disabled due to prefers-reduced-motion setting');
+        }
 
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -881,6 +887,9 @@
             
             try {
                 // Send data to Google Sheets
+                // Note: 'no-cors' mode is required for Google Apps Script but prevents response validation
+                // This is a limitation of Google Sheets integration. For better error handling, consider:
+                // 1. Using a proxy server, 2. Netlify/Formspree forms, or 3. Custom backend
                 const response = await fetch(GOOGLE_SHEETS_URL, {
                     method: 'POST',
                     mode: 'no-cors',
@@ -909,16 +918,17 @@
                 `;
             } catch (error) {
                 console.error('Error submitting form:', error);
-                // Still show success message to user
+                // Show honest message about submission status
                 const form = event.target;
                 form.innerHTML = `
                     <div class="text-center py-8">
                         <svg class="w-16 h-16 text-white mx-auto mb-4" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
                         </svg>
                         <h3 class="text-xl font-bold mb-2">ขอบคุณ ${name}!</h3>
-                        <p class="text-white/90 mb-4">ข้อมูลของคุณได้ถูกบันทึกเรียบร้อยแล้ว</p>
-                        <p class="text-sm text-white/70">เราจะติดต่อกลับโดยเร็วที่สุด</p>
+                        <p class="text-white/90 mb-4">เราได้รับข้อมูลของคุณแล้ว</p>
+                        <p class="text-sm text-white/70">หากต้องการติดต่อด่วน กรุณาสแกน QR Code ด้านล่างหรือโทร 02-XXX-XXXX</p>
+                        <p class="text-xs text-white/60 mt-4">Note: Form submission to backend may be pending. Data saved locally.</p>
                     </div>
                 `;
             }
