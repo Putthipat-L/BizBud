@@ -14,12 +14,15 @@ Before deploying to production, ensure all placeholder values are replaced:
   - Guide: `docs/GOOGLE_SHEETS_SETUP.md`
 
 ### 2. Contact Information
-- [ ] Phone number updated in `index.html`
+- [ ] Phone number updated in `index.html` (CRITICAL - 2 locations)
   - Search for: `02-XXX-XXXX`
-  - Replace with: Actual business phone number
+  - Replace with: Actual business phone number (e.g., `02-123-4567`)
+  - Location 1: Contact section footer
+  - Location 2: Error message in form handler (line ~930)
 - [ ] Email address verified
   - Check: `hello@bizbud.co.th` is correct
   - Update if different
+  - Also update in `docs/GOOGLE_SHEETS_SETUP.md` if using email notifications
 
 ### 3. Pricing Information
 - [ ] Package pricing updated in `index.html`

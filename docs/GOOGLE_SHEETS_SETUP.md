@@ -23,6 +23,7 @@ This guide explains how to set up Google Sheets integration to automatically cap
 - ⚠️ Not suitable for extremely high traffic
 - ⚠️ Limited to 1,000 requests per day (can be increased)
 - ⚠️ No built-in spam protection (need to add)
+- ⚠️ Web App URL visible in client-side code (public endpoint)
 
 ---
 
@@ -472,10 +473,22 @@ function backupSheet() {
 
 ## Security Best Practices
 
-### 1. Protect Your Web App URL
-- Don't commit URL to public repositories
-- Use environment variables or configuration files
-- Rotate URL if compromised (new deployment)
+### 1. Understand URL Visibility
+- **Important**: The Web App URL will be visible in client-side code
+- This is expected and acceptable for public form submissions
+- Anyone can view it in browser developer tools
+- The URL itself is a public endpoint (this is by design)
+- Focus on securing the Apps Script logic instead:
+  - Validate all inputs
+  - Implement rate limiting
+  - Add spam protection
+  - Don't trust client-side data
+
+### 2. Protect Your Google Sheet
+- Share sheet only with necessary team members
+- Use "Editor" access for team
+- Use "Viewer" access for stakeholders
+- Don't make the sheet publicly editable
 
 ### 2. Limit Sheet Access
 - Share sheet only with necessary team members

@@ -175,6 +175,15 @@ The contact form can be integrated with Google Sheets for lead tracking. See [do
 3. Replace `YOUR_GOOGLE_SHEETS_WEB_APP_URL_HERE` in index.html with your Web App URL
 4. Test the form submission
 
+### ⚠️ Security Note
+The Google Sheets Web App URL will be visible in client-side code. This is acceptable for public form submissions but means:
+- Anyone can view the URL in browser developer tools
+- The Apps Script should validate and sanitize all inputs
+- Consider adding rate limiting to prevent abuse
+- For sensitive data, use a proper backend server instead
+
+For higher security needs, see alternative solutions in the documentation (Netlify Forms, custom backend, etc.).
+
 ## 🎯 Interactive Features
 
 ### Button Functionality
