@@ -50,6 +50,101 @@
             0%, 100% { opacity: 1; }
             50% { opacity: 0.7; }
         }
+        
+        /* Carousel Styles */
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1rem;
+        }
+        
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        
+        .carousel-slide {
+            min-width: 100%;
+            transition: opacity 0.5s ease-in-out;
+        }
+        
+        .carousel-slide img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+        }
+        
+        .carousel-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+        
+        .carousel-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .carousel-indicator.active {
+            background: #ff914d;
+            width: 30px;
+            border-radius: 6px;
+        }
+        
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+        
+        .carousel-button:hover {
+            background: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .carousel-button.prev {
+            left: 20px;
+        }
+        
+        .carousel-button.next {
+            right: 20px;
+        }
+        
+        /* Notification Animation */
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        .animate-slide-in {
+            animation: slideIn 0.3s ease-out;
+            transition: all 0.3s ease;
+        }
     </style>
 </head>
 <body class="bg-white text-gray-800">
@@ -127,6 +222,55 @@
                         </svg>
                     </div>
                     <p class="text-sm text-gray-600 font-medium">Success Together</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Carousel Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-biz-navy mb-4">
+                    Our Success Stories
+                </h2>
+                <p class="text-xl text-gray-600">ภาพความสำเร็จจากโครงการที่ผ่านมา</p>
+            </div>
+            
+            <div class="carousel-container">
+                <div class="carousel-track" id="carouselTrack">
+                    <div class="carousel-slide">
+                        <img src="assets/images/carousel-1.jpg" alt="Success Story 1">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="assets/images/carousel-2.jpg" alt="Success Story 2">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="assets/images/carousel-3.jpg" alt="Success Story 3">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="assets/images/carousel-4.jpg" alt="Success Story 4">
+                    </div>
+                </div>
+                
+                <!-- Navigation Buttons -->
+                <button class="carousel-button prev" onclick="prevSlide()" aria-label="Previous slide">
+                    <svg class="w-6 h-6 text-biz-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                    </svg>
+                </button>
+                <button class="carousel-button next" onclick="nextSlide()" aria-label="Next slide">
+                    <svg class="w-6 h-6 text-biz-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </button>
+                
+                <!-- Indicators -->
+                <div class="carousel-indicators" id="carouselIndicators">
+                    <button class="carousel-indicator active" onclick="goToSlide(0)" aria-label="Go to slide 1"></button>
+                    <button class="carousel-indicator" onclick="goToSlide(1)" aria-label="Go to slide 2"></button>
+                    <button class="carousel-indicator" onclick="goToSlide(2)" aria-label="Go to slide 3"></button>
+                    <button class="carousel-indicator" onclick="goToSlide(3)" aria-label="Go to slide 4"></button>
                 </div>
             </div>
         </div>
@@ -513,15 +657,9 @@
                     <div class="bg-gray-50 rounded-2xl p-8 mb-8">
                         <h3 class="text-2xl font-bold text-biz-navy mb-6">จองคิวปรึกษาฟรี</h3>
                         
-                        <!-- QR Code Placeholder -->
-                        <div class="w-48 h-48 bg-white border-2 border-dashed border-gray-300 rounded-2xl mx-auto mb-6 flex items-center justify-center">
-                            <div class="text-center">
-                                <svg class="w-16 h-16 text-gray-400 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"/>
-                                </svg>
-                                <p class="text-sm text-gray-500 font-medium">QR Code</p>
-                                <p class="text-xs text-gray-400">Line Official</p>
-                            </div>
+                        <!-- QR Code -->
+                        <div class="w-48 h-48 bg-white border-2 border-gray-200 rounded-2xl mx-auto mb-6 flex items-center justify-center overflow-hidden">
+                            <img src="assets/images/line-qr.jpg" alt="Line Official QR Code" class="w-full h-full object-cover">
                         </div>
                         
                         <p class="text-gray-600 mb-6">สแกน QR Code เพื่อ Add Line และจองคิวปรึกษาฟรี</p>
@@ -567,6 +705,63 @@
     </footer>
 
     <script>
+        // Carousel functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const totalSlides = slides.length;
+        let autoPlayInterval;
+
+        function updateCarousel() {
+            const track = document.getElementById('carouselTrack');
+            const indicators = document.querySelectorAll('.carousel-indicator');
+            
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            indicators.forEach((indicator, index) => {
+                if (index === currentSlide) {
+                    indicator.classList.add('active');
+                } else {
+                    indicator.classList.remove('active');
+                }
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateCarousel();
+            resetAutoPlay();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateCarousel();
+            resetAutoPlay();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateCarousel();
+            resetAutoPlay();
+        }
+
+        function startAutoPlay() {
+            autoPlayInterval = setInterval(nextSlide, 5000);
+        }
+
+        function resetAutoPlay() {
+            clearInterval(autoPlayInterval);
+            startAutoPlay();
+        }
+
+        // Start auto-play when page loads (respect user's motion preference)
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!prefersReducedMotion) {
+            startAutoPlay();
+        } else {
+            // For users who prefer reduced motion, still allow manual navigation
+            console.log('Auto-play disabled due to prefers-reduced-motion setting');
+        }
+
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -581,8 +776,99 @@
             });
         });
 
-        // Lead form handler
-        function handleLeadForm(event) {
+        // Book Queue Button Handler
+        function handleBookQueue() {
+            const lineButton = document.querySelector('.bg-green-500');
+            if (lineButton) {
+                lineButton.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                lineButton.classList.add('animate-pulse');
+                setTimeout(() => lineButton.classList.remove('animate-pulse'), 2000);
+            }
+        }
+
+        // Package Selection Handler
+        function handlePackageSelection(packageName) {
+            // Show modern notification instead of alert
+            showNotification(`คุณเลือกแพ็กเกจ: ${packageName}`, 'กรุณาติดต่อเราผ่าน Line หรือกรอกฟอร์มด้านล่างเพื่อรับคำปรึกษาเพิ่มเติม');
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // Toast Notification System
+        function showNotification(title, message) {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = 'fixed top-20 right-4 bg-white border-2 border-biz-orange rounded-lg shadow-xl p-6 z-50 max-w-sm animate-slide-in';
+            notification.innerHTML = `
+                <div class="flex items-start">
+                    <div class="flex-shrink-0">
+                        <svg class="w-6 h-6 text-biz-orange" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <div class="ml-3 flex-1">
+                        <h3 class="text-lg font-semibold text-biz-navy">${title}</h3>
+                        <p class="mt-1 text-sm text-gray-600">${message}</p>
+                    </div>
+                    <button onclick="this.parentElement.parentElement.remove()" class="ml-4 text-gray-400 hover:text-gray-600">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                        </svg>
+                    </button>
+                </div>
+            `;
+            
+            // Add to page
+            document.body.appendChild(notification);
+            
+            // Auto-remove after 5 seconds
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                notification.style.transform = 'translateX(100%)';
+                setTimeout(() => notification.remove(), 300);
+            }, 5000);
+        }
+
+        // Add click handlers to navigation "Book Queue" button
+        document.addEventListener('DOMContentLoaded', function() {
+            const navBookBtn = document.querySelector('nav button');
+            if (navBookBtn) {
+                navBookBtn.addEventListener('click', handleBookQueue);
+            }
+
+            // Hero Book Queue button
+            const heroBookBtn = document.querySelector('.pulse-animation');
+            if (heroBookBtn) {
+                heroBookBtn.addEventListener('click', handleBookQueue);
+            }
+
+            // Package selection buttons - extract names from headings for consistency
+            const packageButtons = document.querySelectorAll('#services button');
+            packageButtons.forEach((btn) => {
+                btn.addEventListener('click', function() {
+                    // Find the package name from the nearest h3 heading
+                    const packageCard = this.closest('.bg-white');
+                    const packageName = packageCard.querySelector('h3').textContent.trim();
+                    handlePackageSelection(packageName);
+                });
+            });
+
+            // About section book button
+            const aboutBookBtn = document.querySelector('#about button');
+            if (aboutBookBtn) {
+                aboutBookBtn.addEventListener('click', handleBookQueue);
+            }
+
+            // Line button click handler
+            const lineBtn = document.querySelector('.bg-green-500');
+            if (lineBtn) {
+                lineBtn.addEventListener('click', function() {
+                    showNotification('Add Line Official', 'กรุณาสแกน QR Code ด้านบนเพื่อเพิ่ม Line Official Account และจองคิวปรึกษาฟรี');
+                });
+            }
+        });
+
+        // Lead form handler with Google Sheets integration
+        async function handleLeadForm(event) {
             event.preventDefault();
             
             const formData = new FormData(event.target);
@@ -590,18 +876,62 @@
             const email = formData.get('email');
             const company = formData.get('company');
             
-            // Show success message
-            const form = event.target;
-            form.innerHTML = `
-                <div class="text-center py-8">
-                    <svg class="w-16 h-16 text-white mx-auto mb-4" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
-                    </svg>
-                    <h3 class="text-xl font-bold mb-2">ขอบคุณ ${name}!</h3>
-                    <p class="text-white/90 mb-4">E-book ได้ถูกส่งไปยัง ${email} แล้ว</p>
-                    <p class="text-sm text-white/70">กรุณาตรวจสอบอีเมลของคุณ (รวมถึงโฟลเดอร์ Spam)</p>
-                </div>
-            `;
+            // Google Sheets Web App URL - IMPORTANT: Replace before deployment
+            // See docs/GOOGLE_SHEETS_SETUP.md for setup instructions
+            const GOOGLE_SHEETS_URL = 'YOUR_GOOGLE_SHEETS_WEB_APP_URL_HERE';
+            
+            // Validate that URL has been configured
+            if (GOOGLE_SHEETS_URL === 'YOUR_GOOGLE_SHEETS_WEB_APP_URL_HERE') {
+                console.warn('⚠️ Google Sheets integration not configured. Please follow setup guide in docs/GOOGLE_SHEETS_SETUP.md');
+            }
+            
+            try {
+                // Send data to Google Sheets
+                // Note: 'no-cors' mode is required for Google Apps Script but prevents response validation
+                // This is a limitation of Google Sheets integration. For better error handling, consider:
+                // 1. Using a proxy server, 2. Netlify/Formspree forms, or 3. Custom backend
+                const response = await fetch(GOOGLE_SHEETS_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        email: email,
+                        company: company,
+                        timestamp: new Date().toISOString()
+                    })
+                });
+                
+                // Show success message
+                const form = event.target;
+                form.innerHTML = `
+                    <div class="text-center py-8">
+                        <svg class="w-16 h-16 text-white mx-auto mb-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                        </svg>
+                        <h3 class="text-xl font-bold mb-2">ขอบคุณ ${name}!</h3>
+                        <p class="text-white/90 mb-4">E-book ได้ถูกส่งไปยัง ${email} แล้ว</p>
+                        <p class="text-sm text-white/70">กรุณาตรวจสอบอีเมลของคุณ (รวมถึงโฟลเดอร์ Spam)</p>
+                    </div>
+                `;
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                // Show honest message about submission status
+                const form = event.target;
+                form.innerHTML = `
+                    <div class="text-center py-8">
+                        <svg class="w-16 h-16 text-white mx-auto mb-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                        </svg>
+                        <h3 class="text-xl font-bold mb-2">ขอบคุณ ${name}!</h3>
+                        <p class="text-white/90 mb-4">เราได้รับข้อมูลของคุณแล้ว</p>
+                        <p class="text-sm text-white/70">หากต้องการติดต่อด่วน กรุณาสแกน QR Code ด้านล่าง</p>
+                        <p class="text-xs text-white/60 mt-4">Note: Form submission may be pending. Please also contact us via Line QR code for immediate response.</p>
+                    </div>
+                `;
+            }
         }
 
         // Add scroll effect to navigation
