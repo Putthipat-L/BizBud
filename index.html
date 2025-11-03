@@ -81,7 +81,9 @@
             transform: translateX(-50%);
             display: flex;
             gap: 10px;
-            z-index: 10;
+            /* Ensure indicators are above nearby content */
+            z-index: 30;
+            pointer-events: auto;
         }
         
         .carousel-indicator {
@@ -172,12 +174,9 @@
     <section class="pt-24 pb-20 gradient-bg hero-pattern">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <!-- Logo Upload Area -->
-                <div class="w-24 h-24 bg-gray-50 border-2 border-dashed border-gray-300 rounded-full mx-auto mb-8 flex items-center justify-center">
-                    <div class="text-center">
-                        <div class="text-sm font-medium text-gray-400">[LOGO</div>
-                        <div class="text-sm font-medium text-gray-400">UPLOAD AREA]</div>
-                    </div>
+                <!-- Logo -->
+                <div class="mx-auto mb-8">
+                    <img src="assets/images/bizbud-logo.png" alt="Business Buddy Logo" class="h-24 w-auto mx-auto">
                 </div>
                 
                 <h1 class="text-5xl md:text-6xl font-bold text-biz-navy mb-6 leading-tight">
@@ -252,7 +251,7 @@
                         <img src="assets/images/carousel-4.jpg" alt="Success Story 4">
                     </div>
                 </div>
-                
+
                 <!-- Navigation Buttons -->
                 <button class="carousel-button prev" onclick="prevSlide()" aria-label="Previous slide">
                     <svg class="w-6 h-6 text-biz-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -271,6 +270,25 @@
                     <button class="carousel-indicator" onclick="goToSlide(1)" aria-label="Go to slide 2"></button>
                     <button class="carousel-indicator" onclick="goToSlide(2)" aria-label="Go to slide 3"></button>
                     <button class="carousel-indicator" onclick="goToSlide(3)" aria-label="Go to slide 4"></button>
+                </div>
+            </div>
+
+            <!-- Quotes under carousel -->
+            <div class="mt-12 max-w-4xl mx-auto text-center space-y-6">
+                <h3 class="text-2xl font-semibold text-biz-navy">What people say</h3>
+                <div class="grid md:grid-cols-3 gap-6 mt-6">
+                    <blockquote class="bg-gray-50 p-6 rounded-2xl text-gray-700">
+                        <p class="italic">"ทีม Business Buddy ช่วยเราเปลี่ยนโมเดลธุรกิจและเพิ่มรายได้อย่างเป็นรูปธรรม"</p>
+                        <footer class="mt-4 text-sm text-gray-500">— คุณสมชาย, ABC Manufacturing</footer>
+                    </blockquote>
+                    <blockquote class="bg-gray-50 p-6 rounded-2xl text-gray-700">
+                        <p class="italic">"การทำงานร่วมกันเป็น Co-Pilot ทำให้แผนงานเกิดผลจริง"</p>
+                        <footer class="mt-4 text-sm text-gray-500">— คุณอ้อม, Retail Chain</footer>
+                    </blockquote>
+                    <blockquote class="bg-gray-50 p-6 rounded-2xl text-gray-700">
+                        <p class="italic">"ทีมช่วยให้เราเข้าใจตลาดและสร้าง New S-Curve ที่ชัดเจน"</p>
+                        <footer class="mt-4 text-sm text-gray-500">— คุณมุก, Startup</footer>
+                    </blockquote>
                 </div>
             </div>
         </div>
@@ -673,8 +691,8 @@
                     </div>
                     
                     <div class="text-sm text-gray-500 space-y-2">
-                        <p>📞 Tel: 02-XXX-XXXX</p>
-                        <p>📧 Email: hello@bizbud.co.th</p>
+                        <p>📞 Tel: 099-145-9642</p>
+                        <p>📧 Email: putthipat.lapat@gmail.com</p>
                         <p>🕒 เวลาทำการ: จันทร์-ศุกร์ 9:00-18:00</p>
                     </div>
                 </div>
@@ -687,9 +705,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center">
                 <div class="flex items-center justify-center space-x-3 mb-6">
-                    <div class="w-10 h-10 bg-biz-orange rounded-lg flex items-center justify-center">
-                        <span class="text-sm font-bold">BB</span>
-                    </div>
+                    <img src="assets/images/bizbud-logo.png" alt="Business Buddy Logo" class="w-10 h-10 object-contain">
                     <span class="text-2xl font-bold">Business Buddy</span>
                 </div>
                 <p class="text-gray-300 mb-6 max-w-2xl mx-auto">
