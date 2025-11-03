@@ -653,8 +653,15 @@
                     
                     <form class="space-y-4" onsubmit="handleLeadForm(event)">
                         <div>
-                            <label for="lead-name" class="block text-sm font-medium mb-2">ชื่อ-นามสกุล</label>
-                            <input type="text" id="lead-name" name="name" required class="w-full px-4 py-3 rounded-lg bg-white/20 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50" placeholder="กรอกชื่อของคุณ">
+                            <label for="lead-name" class="block text-sm font-medium mb-2">ชื่อ - นามสกุล</label>
+                            <input type="text" id="lead-name" name="name" required class="w-full px-4 py-3 rounded-lg bg-white/20 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50" placeholder="กรอกชื่อ-นามสกุลของคุณ">
+                        </div>
+                        <div>
+                            <label for="lead-phone" class="block text-sm font-medium mb-2">เบอร์โทร (+66)</label>
+                            <div class="flex items-stretch">
+                                <span class="inline-flex items-center px-3 rounded-l-lg bg-white/20 border border-r-0 border-white/30 text-white/80 text-sm">+66</span>
+                                <input type="tel" id="lead-phone" name="phone" required class="w-full px-4 py-3 rounded-r-lg bg-white/20 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50" placeholder="ระบุเบอร์โทร (ไม่ต้องใส่ 0 นำหน้า)">
+                            </div>
                         </div>
                         <div>
                             <label for="lead-email" class="block text-sm font-medium mb-2">อีเมล</label>
@@ -662,11 +669,15 @@
                         </div>
                         <div>
                             <label for="lead-company" class="block text-sm font-medium mb-2">ชื่อบริษัท</label>
-                            <input type="text" id="lead-company" name="company" class="w-full px-4 py-3 rounded-lg bg-white/20 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50" placeholder="ชื่อบริษัทของคุณ">
+                            <input type="text" id="lead-company" name="company" required class="w-full px-4 py-3 rounded-lg bg-white/20 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50" placeholder="ชื่อบริษัทของคุณ">
                         </div>
                         <button type="submit" class="w-full bg-white text-biz-orange py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
                             ดาวน์โหลด E-book ฟรี
                         </button>
+                        <div class="text-sm text-white/80 text-center">
+                            ดูข้อมูลที่บันทึกใน Google Sheet: 
+                            <a href="https://docs.google.com/spreadsheets/d/1q5mDEwRO3JxcPzWYU6ITtEJA0OcC1t8gfRO59Lt7nn0/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="underline font-medium">เปิดลิงก์</a>
+                        </div>
                     </form>
                 </div>
                 
@@ -889,15 +900,27 @@
             
             const formData = new FormData(event.target);
             const name = formData.get('name');
+            const phoneInput = (formData.get('phone') || '').toString().trim();
             const email = formData.get('email');
             const company = formData.get('company');
             
+            // Normalize Thai phone number to +66 format
+            function normalizeThaiPhone(input) {
+                if (!input) return '';
+                const digits = input.replace(/[^0-9+]/g, '');
+                if (digits.startsWith('+66')) return digits;
+                if (digits.startsWith('0')) return '+66' + digits.slice(1);
+                if (digits.startsWith('66')) return '+' + digits;
+                return '+66' + digits;
+            }
+            const phone = normalizeThaiPhone(phoneInput);
+            
             // Google Sheets Web App URL - IMPORTANT: Replace before deployment
             // See docs/GOOGLE_SHEETS_SETUP.md for setup instructions
-            const GOOGLE_SHEETS_URL = 'YOUR_GOOGLE_SHEETS_WEB_APP_URL_HERE';
+            const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbxisSu7w0DN_zb-erIHYSCQsqfuWPuCe8qMYdHuwt-5bzvGsYgQa1JOeDM85p_OQqfx/exec';
             
             // Validate that URL has been configured
-            if (GOOGLE_SHEETS_URL === 'YOUR_GOOGLE_SHEETS_WEB_APP_URL_HERE') {
+            if (GOOGLE_SHEETS_URL === 'https://script.google.com/macros/s/AKfycbxisSu7w0DN_zb-erIHYSCQsqfuWPuCe8qMYdHuwt-5bzvGsYgQa1JOeDM85p_OQqfx/exec') {
                 console.warn('⚠️ Google Sheets integration not configured. Please follow setup guide in docs/GOOGLE_SHEETS_SETUP.md');
             }
             
@@ -914,6 +937,7 @@
                     },
                     body: JSON.stringify({
                         name: name,
+                        phone: phone,
                         email: email,
                         company: company,
                         timestamp: new Date().toISOString()
