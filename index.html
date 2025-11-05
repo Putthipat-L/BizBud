@@ -1,1011 +1,724 @@
-<!DOCTYPE html>
-<html lang="th" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="เพื่อนคู่คิด SME ไทยในการสร้างการเติบโตใหม่ (New S-Curve) ที่ยั่งยืนทั้งธุรกิจ คน และสังคม">
-    <title>Business Buddy - Your Growth Buddy for the New S-Curve</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'biz-orange': '#ff914d',
-                        'biz-navy': '#120e3d'
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        body {
-            box-sizing: border-box;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-        }
-        
-        .gradient-bg {
-            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-        }
-        
-        .hero-pattern {
-            background-image: radial-gradient(circle at 25% 25%, rgba(255, 145, 77, 0.1) 0%, transparent 50%),
-                              radial-gradient(circle at 75% 75%, rgba(18, 14, 61, 0.05) 0%, transparent 50%);
-        }
-        
-        .card-hover {
-            transition: all 0.3s ease;
-        }
-        
-        .card-hover:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-        
-        .pulse-animation {
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-        }
-        
-        /* Carousel Styles */
-        .carousel-container {
-            position: relative;
-            overflow: hidden;
-            border-radius: 1rem;
-        }
-        
-        .carousel-track {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-        
-        .carousel-slide {
-            min-width: 100%;
-            transition: opacity 0.5s ease-in-out;
-        }
-        
-        .carousel-slide img {
-            width: 100%;
-            height: 500px;
-            object-fit: cover;
-        }
-        
-        .carousel-indicators {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 10px;
-            /* Ensure indicators are above nearby content */
-            z-index: 30;
-            pointer-events: auto;
-        }
-        
-        .carousel-indicator {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .carousel-indicator.active {
-            background: #ff914d;
-            width: 30px;
-            border-radius: 6px;
-        }
-        
-        .carousel-button {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.9);
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
-            transition: all 0.3s ease;
-        }
-        
-        .carousel-button:hover {
-            background: white;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        }
-        
-        .carousel-button.prev {
-            left: 20px;
-        }
-        
-        .carousel-button.next {
-            right: 20px;
-        }
-        
-        /* Notification Animation */
-        @keyframes slideIn {
-            from {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-        
-        .animate-slide-in {
-            animation: slideIn 0.3s ease-out;
-            transition: all 0.3s ease;
-        }
-    </style>
-</head>
-<body class="bg-white text-gray-800">
-    <!-- Navigation -->
-    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-sm z-50 border-b border-gray-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <div class="flex items-center">
-    <img src="assets/images/bizbud-logo.png" alt="BUSINESS BUDDY Logo" class="h-10 w-auto">
-</div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#services" class="text-gray-600 hover:text-biz-orange transition-colors">Services</a>
-                    <a href="#success" class="text-gray-600 hover:text-biz-orange transition-colors">Success Stories</a>
-                    <a href="#about" class="text-gray-600 hover:text-biz-orange transition-colors">About Us</a>
-                    <a href="#contact" class="text-gray-600 hover:text-biz-orange transition-colors">Contact</a>
-                </div>
-                <button class="bg-biz-orange text-white px-6 py-2 rounded-full hover:bg-orange-600 transition-colors font-medium">
-                    จองคิวคุยกับเรา
-                </button>
-            </div>
-        </div>
-    </nav>
+<!doctype html>
+<html lang="th">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Business Buddy - Your Growth Partner</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      box-sizing: border-box;
+    }
+    
+    * {
+      box-sizing: border-box;
+    }
 
-    <!-- Hero Section -->
-    <section class="pt-24 pb-20 gradient-bg hero-pattern">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <!-- Logo -->
-                <div class="mx-auto mb-8">
-                    <img src="assets/images/bizbud-logo.png" alt="Business Buddy Logo" class="h-24 w-auto mx-auto">
-                </div>
-                
-                <h1 class="text-5xl md:text-6xl font-bold text-biz-navy mb-6 leading-tight">
-                    Your Growth Buddy<br>
-                    <span class="text-biz-orange">for the New S-Curve</span>
-                </h1>
-                
-                <p class="text-xl text-gray-600 mb-8 max-w-4xl mx-auto leading-relaxed">
-                    เพื่อนคู่คิด SME ไทยไว้วางใจ<br>
-                    ในการสร้างการเติบโตใหม่ (New S-Curve)<br>
-                    ที่ยั่งยืนทั้งธุรกิจ คน และสังคม
+    @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@400;600;700&display=swap');
+    
+    .carousel-container {
+      width: 90%;
+      max-width: 600px;
+      margin: 2rem auto;
+      position: relative;
+      overflow: hidden;
+      border-radius: 1rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      border: 2px solid #fac026;
+    }
+    
+    .carousel-track {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+    
+    .carousel-slide {
+      min-width: 100%;
+      aspect-ratio: 4/3;
+      background: linear-gradient(135deg, #fac026 0%, #ff914d 100%);
+    }
+    
+    .carousel-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .carousel-nav {
+      position: absolute;
+      bottom: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 0.5rem;
+      z-index: 10;
+    }
+    
+    .carousel-dot {
+      width: 0.75rem;
+      height: 0.75rem;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.5);
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    
+    .carousel-dot.active {
+      background: white;
+    }
+    
+    body {
+      font-family: 'Prompt', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+
+
+    .service-card {
+      transition: transform 0.3s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-4px);
+    }
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .navbar.scrolled {
+      background-color: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-link {
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: #fac026 !important;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: #fac026;
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .mobile-menu {
+      display: none;
+    }
+
+    .mobile-menu.active {
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .desktop-menu {
+        display: none;
+      }
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      padding-top: 80px;
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="bg-white"><!-- Navigation Bar -->
+  <nav id="navbar" class="navbar bg-white">
+   <div class="max-w-7xl mx-auto px-8">
+    <div class="flex justify-between items-center h-20"><!-- Logo -->
+     <div class="flex items-center">
+       <img src="assets/images/bizbud-logo.jpg" alt="Business Buddy Logo" class="h-12">
+     </div><!-- Desktop Menu -->
+     <div class="desktop-menu hidden md:flex space-x-8"><a href="#hero" class="nav-link font-semibold" style="color: #10193b;">Home</a> <a href="#reasons" class="nav-link font-semibold" style="color: #10193b;">Why Choose Us</a> <a href="#services" class="nav-link font-semibold" style="color: #10193b;">Services</a> <a href="#testimonials" class="nav-link font-semibold" style="color: #10193b;">Testimonials</a> <a href="#success" class="nav-link font-semibold" style="color: #10193b;">Success Stories</a> <a href="#contact" class="nav-link font-semibold" style="color: #10193b;">Contact</a>
+     </div><!-- Mobile Menu Button --> <button id="mobile-menu-btn" class="md:hidden p-2"> <span class="block w-6 h-0.5 mb-1" style="background-color: #10193b;"></span> <span class="block w-6 h-0.5 mb-1" style="background-color: #10193b;"></span> <span class="block w-6 h-0.5" style="background-color: #10193b;"></span> </button>
+    </div><!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu md:hidden py-4 border-t" style="border-color: #f3f4f6;">
+     <div class="flex flex-col space-y-4"><a href="#hero" class="nav-link font-semibold" style="color: #10193b;">Home</a> <a href="#reasons" class="nav-link font-semibold" style="color: #10193b;">Why Choose Us</a> <a href="#services" class="nav-link font-semibold" style="color: #10193b;">Services</a> <a href="#testimonials" class="nav-link font-semibold" style="color: #10193b;">Testimonials</a> <a href="#success" class="nav-link font-semibold" style="color: #10193b;">Success Stories</a> <a href="#contact" class="nav-link font-semibold" style="color: #10193b;">Contact</a>
+     </div>
+    </div>
+   </div>
+  </nav><!-- Hero Section -->
+  <section id="hero" class="min-h-full flex flex-col lg:flex-row" style="padding-top:0;">
+   <div class="w-full lg:w-1/2 flex items-center justify-center py-20 lg:py-36 px-10 lg:px-20" style="background-color: #ffffff;">
+    <div class="max-w-xl">
+     <h1 id="hero-headline" class="text-3xl lg:text-4xl font-bold mb-2" style="color: #10193b;">
+    Your Growth Buddy<br>
+    for the <span style="color:#fac026; font-size: 1.1em;">New S-Curve</span>
+</h1>
+     <p id="hero-subheadline" class="text-base lg:text-lg mb-8" style="color: #10193b;">เพื่อนคู่คิด SME ไทยไว้วางใจ ในการสร้างการเติบโตใหม่ <span style="color:#fac026; white-space:nowrap;">(New S-Curve)</span> ที่ยั่งยืนทั้งธุรกิจ คน และสังคม</p><button id="hero-cta-btn" class="px-8 py-4 text-white font-bold rounded-lg text-lg transition-all hover:opacity-90 shadow-lg" style="background-color: #fac026;"> Find your Growth Path </button>
+    </div>
+   </div>
+   
+   <!-- Right Side - Carousel -->
+   <div class="w-full lg:w-1/2 relative flex items-center justify-center" style="background-color: #f8f8f8; min-height: 320px;">
+    <div class="carousel-container">
+      <div class="carousel-track" id="carouselTrack">
+        <div class="carousel-slide">
+          <img src="assets/images/carousel-1.jpg" alt="Success Story 1">
+        </div>
+        <div class="carousel-slide">
+          <img src="assets/images/carousel-2.jpg" alt="Success Story 2">
+        </div>
+        <div class="carousel-slide">
+          <img src="assets/images/carousel-3.jpg" alt="Success Story 3">
+        </div>
+        <div class="carousel-slide">
+          <img src="assets/images/carousel-4.jpg" alt="Success Story 4">
+        </div>
+      </div>
+      <div class="carousel-nav" id="carouselNav">
+        <div class="carousel-dot active"></div>
+        <div class="carousel-dot"></div>
+        <div class="carousel-dot"></div>
+        <div class="carousel-dot"></div>
+      </div>
+    </div>
+   </div>
+  </section>
+
+  <!-- 90 Days with Buddy Section -->
+<section id="buddy-90-days" class="py-16 md:py-24" style="background-color: #fac026;">
+    <div class="container mx-auto px-4 md:px-8 max-w-7xl">
+        
+        <div class="flex flex-col md:flex-row gap-10 md:gap-16 items-stretch">
+            
+            <div class="w-full md:w-1/2 flex flex-col justify-center items-center md:items-start text-center md:text-left">
+                <h2 class="text-4xl lg:text-5xl font-extrabold mb-3" style="white-space:nowrap;">
+                    <span style="color:#10193b;">90 Days</span> 
+                    <span style="color:white;">with Buddy</span>
+                </h2>
+                <p class="text-xl md:text-2xl mb-8" style="color:#10193b; font-weight: 500;">
+                    หลังจากร่วมงานกับเรา การเปลี่ยนแปลงสามารถเห็นผลได้ ใน 90 วัน
                 </p>
-                
-                <button class="bg-biz-orange text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-orange-600 transition-all transform hover:scale-105 shadow-lg pulse-animation">
-                    Book Queue: จองคิวคุยกับเรา
+                <button class="px-8 py-4 font-bold rounded-lg text-lg transition-all hover:opacity-90 shadow-xl" 
+                        style="background-color: #10193b; color: #ffffff;">
+                    Checklist: Find your Growth Path
                 </button>
             </div>
-            
-            <!-- Partnership Visual -->
-            <div class="flex justify-center items-center space-x-8 mt-16">
-                <div class="text-center">
-                    <div class="w-16 h-16 bg-biz-navy rounded-full flex items-center justify-center mb-3">
-                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"/>
-                        </svg>
-                    </div>
-                    <p class="text-sm text-gray-600 font-medium">Your Business</p>
-                </div>
-                
-                <div class="flex items-center space-x-2">
-                    <div class="w-8 h-0.5 bg-biz-orange"></div>
-                    <svg class="w-6 h-6 text-biz-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"/>
-                    </svg>
-                    <div class="w-8 h-0.5 bg-biz-orange"></div>
-                </div>
-                
-                <div class="text-center">
-                    <div class="w-16 h-16 bg-biz-orange rounded-full flex items-center justify-center mb-3">
-                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                        </svg>
-                    </div>
-                    <p class="text-sm text-gray-600 font-medium">Success Together</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Carousel Section -->
-    <section class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="text-4xl font-bold text-biz-navy mb-4">
-                    Our Success Stories
-                </h2>
-                <p class="text-xl text-gray-600">ภาพความสำเร็จจากโครงการที่ผ่านมา</p>
+            <div class="w-full md:w-1/2 flex flex-col justify-center"> 
+                <div class="flex flex-row items-stretch justify-between gap-4 w-full">
+                    
+                    <div class="flex flex-col items-center bg-white p-4 rounded-2xl shadow-lg w-1/3">
+                        <div class="w-16 h-16 rounded-full flex items-center justify-center mb-3 border-4 border-gray-200">
+                            <span class="text-3xl">🎯</span>
+                        </div>
+                        <h3 class="text-base font-bold text-gray-800 mb-1">วัน 1-30</h3>
+                        <p class="text-xs text-gray-600 text-center">วิเคราะห์และวางแผน</p>
+                    </div>
+                    
+                    <div class="flex flex-col items-center bg-white p-4 rounded-2xl shadow-lg w-1/3">
+                        <div class="w-16 h-16 rounded-full flex items-center justify-center mb-3 border-4 border-gray-200">
+                            <span class="text-3xl">🚀</span>
+                        </div>
+                        <h3 class="text-base font-bold text-gray-800 mb-1">วัน 31-60</h3>
+                        <p class="text-xs text-gray-600 text-center">เริ่มดำเนินการ</p>
+                    </div>
+                    
+                    <div class="flex flex-col items-center bg-white p-4 rounded-2xl shadow-lg w-1/3">
+                        <div class="w-16 h-16 rounded-full flex items-center justify-center mb-3 border-4 border-gray-200">
+                            <span class="text-3xl">📈</span>
+                        </div>
+                        <h3 class="text-base font-bold text-gray-800 mb-1">วัน 61-90</h3>
+                        <p class="text-xs text-gray-600 text-center">เห็นผลลัพธ์ชัดเจน</p>
+                    </div>
+                </div>
             </div>
             
-            <div class="carousel-container">
-                <div class="carousel-track" id="carouselTrack">
-                    <div class="carousel-slide">
-                        <img src="assets/images/carousel-1.jpg" alt="Success Story 1">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="assets/images/carousel-2.jpg" alt="Success Story 2">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="assets/images/carousel-3.jpg" alt="Success Story 3">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="assets/images/carousel-4.jpg" alt="Success Story 4">
-                    </div>
-                </div>
-
-                <!-- Navigation Buttons -->
-                <button class="carousel-button prev" onclick="prevSlide()" aria-label="Previous slide">
-                    <svg class="w-6 h-6 text-biz-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
-                    </svg>
-                </button>
-                <button class="carousel-button next" onclick="nextSlide()" aria-label="Next slide">
-                    <svg class="w-6 h-6 text-biz-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                    </svg>
-                </button>
-                
-                <!-- Indicators -->
-                <div class="carousel-indicators" id="carouselIndicators">
-                    <button class="carousel-indicator active" onclick="goToSlide(0)" aria-label="Go to slide 1"></button>
-                    <button class="carousel-indicator" onclick="goToSlide(1)" aria-label="Go to slide 2"></button>
-                    <button class="carousel-indicator" onclick="goToSlide(2)" aria-label="Go to slide 3"></button>
-                    <button class="carousel-indicator" onclick="goToSlide(3)" aria-label="Go to slide 4"></button>
-                </div>
-            </div>
-
-            <!-- Quotes under carousel -->
-            <div class="mt-12 max-w-4xl mx-auto text-center space-y-6">
-                <h3 class="text-2xl font-semibold text-biz-navy">What people say</h3>
-                <div class="grid md:grid-cols-3 gap-6 mt-6">
-                    <blockquote class="bg-gray-50 p-6 rounded-2xl text-gray-700">
-                        <p class="italic">"ทีม Business Buddy ช่วยเราเปลี่ยนโมเดลธุรกิจและเพิ่มรายได้อย่างเป็นรูปธรรม"</p>
-                        <footer class="mt-4 text-sm text-gray-500">— คุณสมชาย, ABC Manufacturing</footer>
-                    </blockquote>
-                    <blockquote class="bg-gray-50 p-6 rounded-2xl text-gray-700">
-                        <p class="italic">"การทำงานร่วมกันเป็น Co-Pilot ทำให้แผนงานเกิดผลจริง"</p>
-                        <footer class="mt-4 text-sm text-gray-500">— คุณอ้อม, Retail Chain</footer>
-                    </blockquote>
-                    <blockquote class="bg-gray-50 p-6 rounded-2xl text-gray-700">
-                        <p class="italic">"ทีมช่วยให้เราเข้าใจตลาดและสร้าง New S-Curve ที่ชัดเจน"</p>
-                        <footer class="mt-4 text-sm text-gray-500">— คุณมุก, Startup</footer>
-                    </blockquote>
-                </div>
-            </div>
         </div>
-    </section>
 
-    <!-- Services Section -->
-    <section id="services" class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-biz-navy mb-4">
-                    Services ที่ทำให้การ Scale Up เป็นเรื่องง่าย
-                </h2>
-                <p class="text-xl text-gray-600">เลือกแพ็กเกจที่เหมาะกับระยะการเติบโตของธุรกิจคุณ</p>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Tier 1: Biz Survive -->
-                <div class="bg-white rounded-2xl p-8 shadow-lg card-hover border-2 border-gray-100">
-                    <div class="text-center mb-6">
-                        <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <svg class="w-8 h-8 text-biz-navy" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M3 6a3 3 0 013-3h10a1 1 0 01.8 1.6L14.25 8l2.55 3.4A1 1 0 0116 13H6a1 1 0 00-1 1v3a1 1 0 11-2 0V6z"/>
-                            </svg>
-                        </div>
-                        <h3 class="text-2xl font-bold text-biz-navy mb-2">Biz Survive</h3>
-                        <p class="text-gray-600 mb-4">Stabilization & Immediate Opportunity</p>
-                        <div class="text-3xl font-bold text-biz-orange mb-2">฿XX,XXX</div>
-                        <p class="text-sm text-gray-500">เริ่มต้น 3 เดือน</p>
-                    </div>
-                    
-                    <ul class="space-y-3 mb-8">
-                        <li class="flex items-center">
-                            <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
-                            </svg>
-                            <span class="text-gray-700">Business Health Check</span>
-                        </li>
-                        <li class="flex items-center">
-                            <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
-                            </svg>
-                            <span class="text-gray-700">Quick Win Opportunities</span>
-                        </li>
-                        <li class="flex items-center">
-                            <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
-                            </svg>
-                            <span class="text-gray-700">Process Optimization</span>
-                        </li>
-                    </ul>
-                    
-                    <button class="w-full bg-gray-100 text-biz-navy py-3 rounded-full font-semibold hover:bg-gray-200 transition-colors">
-                        เลือกแพ็กเกจนี้
-                    </button>
-                </div>
+    </div>
+</section>
+  </section><!-- 5 Reasons Section -->
+  <section id="reasons" class="py-16 px-8" style="background-color: #ffffff;">
+   <div class="max-w-7xl mx-auto"><!-- Header -->
+    <div class="text-center mb-12">
+     <h2 id="reasons-title" class="text-3xl lg:text-4xl font-bold mb-4" style="color: #10193b;">🧭 เติบโตอย่างมีระบบ ง่ายกว่า เร็วกว่า และได้ผลจริง</h2>
+     <p id="reasons-subtitle" class="text-xl lg:text-2xl font-semibold mb-8" style="color: #fac026;">5 เหตุผลที่องค์กรเลือกสร้าง S-Curve ใหม่กับ Business Buddy™</p>
+     <div class="max-w-3xl mx-auto p-6 rounded-lg" style="background-color: #f8f8f8;">
+      <p class="text-lg" style="color: #10193b;">ด้วย <span style="color: #fac026; font-weight: 600;">Buddy Framework</span> ที่ออกแบบมาเพื่อ SME ไทยโดยเฉพาะ เราช่วยให้คุณเติบโตอย่างมั่นใจและยั่งยืน</p>
+     </div>
+    </div><!-- Cards Row 1 - 3 Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+     <div class="p-6 rounded-3xl shadow-lg h-full flex flex-col" style="background-color: #f3f4f6;">
+      <div class="flex justify-center mb-4">
+       <div class="w-16 h-16 rounded-full flex items-center justify-center" style="background-color: #fac026;"><span class="text-3xl">🤝</span>
+       </div>
+      </div>
+      <h3 class="text-lg font-bold mb-3 text-center" style="color: #10193b;">ทำงานแบบ Buddy</h3>
+      <p class="text-center" style="color: #10193b; font-size:12px;">ไม่ใช่แค่ที่ปรึกษา แต่เป็นเพื่อนร่วมทางที่เข้าใจธุรกิจคุณ ทำงานร่วมกันแบบใกล้ชิด และมุ่งมั่นให้คุณประสบความสำเร็จ — เหมือนมี <span style="color:#fac026; font-weight:600;">Growth Partner</span> ในองค์กร</p>
+     </div>
+     <div class="p-6 rounded-3xl shadow-lg h-full flex flex-col" style="background-color: #f3f4f6;">
+      <div class="flex justify-center mb-4">
+       <div class="w-16 h-16 rounded-full flex items-center justify-center" style="background-color: #fac026;"><span class="text-3xl">🎯</span>
+       </div>
+      </div>
+      <h3 class="text-lg font-bold mb-3 text-center" style="color: #10193b;">Framework ที่ใช้งานได้จริง</h3>
+      <p class="text-center" style="color: #10193b; font-size:12px;">เครื่องมือและกระบวนการที่ออกแบบมาเพื่อ SME ไทย ทดสอบแล้วกับธุรกิจจริง ใช้งานง่าย และได้ผลลัพธ์ที่วัดได้ — ช่วยให้คุณเห็น <span style="color:#fac026; font-weight:600;">เส้นทาง S-Curve ใหม่</span> อย่างชัดเจน ตั้งแต่ Idea จนถึง Execution</p>
+     </div>
+     <div class="p-6 rounded-3xl shadow-lg h-full flex flex-col" style="background-color: #f3f4f6;">
+      <div class="flex justify-center mb-4">
+       <div class="w-16 h-16 rounded-full flex items-center justify-center" style="background-color: #fac026;"><span class="text-3xl">💡</span>
+       </div>
+      </div>
+      <h3 class="text-lg font-bold mb-3 text-center" style="color: #10193b;">เน้นการเติบโตที่ยั่งยืน</h3>
+      <p class="text-center" style="color: #10193b; font-size:12px;">ไม่ใช่แค่เติบโตในระยะสั้น แต่สร้างรากฐานที่แข็งแกร่งสำหรับการเติบโตในระยะยาว ทั้งธุรกิจ คน และสังคม — เราเชื่อมต่อกับ <span style="color:#fac026; font-weight:600;">Partner Talent และ Tools ที่เหมาะ</span> กับธุรกิจคุณ เพื่อเร่งการเติบโตได้อย่างมีประสิทธิภาพ และปลอดภัย</p>
+     </div>
+    </div><!-- Cards Row 2 - 2 Cards Centered -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-8">
+     <div class="p-6 rounded-3xl shadow-lg h-full flex flex-col" style="background-color: #f3f4f6;">
+      <div class="flex justify-center mb-4">
+       <div class="w-16 h-16 rounded-full flex items-center justify-center" style="background-color: #fac026;"><span class="text-3xl">📊</span>
+       </div>
+      </div>
+      <h3 class="text-lg font-bold mb-3 text-center" style="color: #10193b;">ข้อมูลและ Insights ที่ชัดเจน</h3>
+      <p class="text-center" style="color: #10193b; font-size:12px;">พา<span style="color:#fac026; font-weight:600;">ทดสอบตลาดจริง ฟังเสียงลูกค้าจริง</span> ด้วย Market Validation Tools ที่พิสูจน์แล้วว่าช่วยลดความเสี่ยง และทำให้คุณรู้ว่า “<span style="color:#fac026; font-weight:600;">อะไรใช่ อะไรไม่ใช่</span>” ก่อนลงทุนจริง</p>
+     </div>
+     <div class="p-6 rounded-3xl shadow-lg h-full flex flex-col" style="background-color: #f3f4f6;">
+      <div class="flex justify-center mb-4">
+       <div class="w-16 h-16 rounded-full flex items-center justify-center" style="background-color: #fac026;"><span class="text-3xl">🌟</span>
+       </div>
+      </div>
+      <h3 class="text-lg font-bold mb-3 text-center" style="color: #10193b;">ประสบการณ์และความเชี่ยวชาญ</h3>
+      <p class="text-center" style="color: #10193b; font-size:12px;">โค้ชช่วยดูแลจนเกิดผลลัพธ์จริงภายใน 90 วัน เราช่วยปรับ <span style="color:#fac026; font-weight:600;">Mindset Skillset และ Routine</span> ของทีมให้ทำงานได้อย่างมีระบบ ด้วยการโค้ชต่อเนื่องและติดตามรายสัปดาห์ ผลลัพธ์คือ องค์กรลูกค้าหลายแห่งสามารถสร้างยอดขายระดับ 8 หลักภายใน 1 ปี เพราะเราไม่เพียงสอน — แต่ “<span style="color:#fac026; font-weight:600;">อยู่ด้วยกันจนสำเร็จจริง</span>”</p>
+     </div>
+    </div><!-- Closing Tagline -->
+    <div class="text-center">
+     <p class="text-2xl font-bold" style="color: #fac026;">"เพื่อนร่วมทางธุรกิจ" หรือ "Buddy พาโต"</p>
+    </div>
+   </div>
+  </section><!-- Services Section -->
+  <section id="services" class="py-16" style="background-color: #f8f8f8;">
+   <div class="max-w-7xl mx-auto px-8">
+    <h2 class="text-3xl lg:text-4xl font-bold text-center mb-16"><span style="display:inline-block; background-color:#fac026; color:#10193b; padding:6px 14px; border-radius:8px;">Our Services</span></h2><!-- Service 1: Buddy to Start -->
+    <div class="service-card mb-16 flex flex-col lg:flex-row items-center gap-8">
+     <div class="w-full lg:w-2/3">
+      <h3 class="text-2xl lg:text-3xl font-bold mb-4" style="color: #10193b;">Buddy to Start</h3>
+      <p class="text-lg mb-6" style="color: #10193b;">เริ่มต้นธุรกิจใหม่หรือ S-Curve ใหม่อย่างมั่นใจ ด้วยการวางแผนที่ชัดเจนและเครื่องมือที่เหมาะสม</p>
+      <div class="space-y-3">
+       <div class="flex items-start gap-3"><span style="color: #fac026;">✓</span>
+        <p style="color: #10193b;">วิเคราะห์โอกาสและความเป็นไปได้ของธุรกิจ</p>
+       </div>
+       <div class="flex items-start gap-3"><span style="color: #fac026;">✓</span>
+        <p style="color: #10193b;">สร้าง Business Model ที่เหมาะสม</p>
+       </div>
+       <div class="flex items-start gap-3"><span style="color: #fac026;">✓</span>
+        <p style="color: #10193b;">วางแผนการเติบโตระยะยาว</p>
+       </div>
+      </div>
+     </div>
+     <div class="w-full lg:w-1/3 flex flex-col items-center gap-4">
+      <div class="w-full aspect-square rounded-2xl flex items-center justify-center" style="background-color: #ffffff; border: 3px solid #fac026;"><span class="text-6xl">🚀</span>
+      </div><button class="w-full px-6 py-3 text-white font-bold rounded-lg transition-all hover:opacity-90" style="background-color: #fac026;"> Start กับ Buddy </button>
+     </div>
+    </div><!-- Service 2: Buddy to Survive -->
+    <div class="service-card mb-16 flex flex-col lg:flex-row-reverse items-center gap-8">
+     <div class="w-full lg:w-2/3">
+      <h3 class="text-2xl lg:text-3xl font-bold mb-4" style="color: #10193b;">Buddy to Survive</h3>
+      <p class="text-lg mb-6" style="color: #10193b;">ฝ่าวิกฤตและความท้าทายด้วยกลยุทธ์ที่เหมาะสม พร้อมสร้างความแข็งแกร่งให้ธุรกิจ</p>
+      <div class="space-y-3">
+       <div class="flex items-start gap-3"><span style="color: #fac026;">✓</span>
+        <p style="color: #10193b;">วิเคราะห์ปัญหาและหาทางออกที่เหมาะสม</p>
+       </div>
+       <div class="flex items-start gap-3"><span style="color: #fac026;">✓</span>
+        <p style="color: #10193b;">ปรับโครงสร้างและกระบวนการทำงาน</p>
+       </div>
+       <div class="flex items-start gap-3"><span style="color: #fac026;">✓</span>
+        <p style="color: #10193b;">สร้างความยืดหยุ่นและความพร้อมรับมือ</p>
+       </div>
+      </div>
+     </div>
+     <div class="w-full lg:w-1/3 flex flex-col items-center gap-4">
+      <div class="w-full aspect-square rounded-2xl flex items-center justify-center" style="background-color: #ffffff; border: 3px solid #fac026;"><span class="text-6xl">💪</span>
+      </div><button class="w-full px-6 py-3 text-white font-bold rounded-lg transition-all hover:opacity-90" style="background-color: #fac026;"> พร้อมลุยกับ Buddy </button>
+     </div>
+    </div><!-- Service 3: Buddy to Scale -->
+    <div class="service-card mb-16 flex flex-col lg:flex-row items-center gap-8">
+     <div class="w-full lg:w-2/3">
+      <h3 class="text-2xl lg:text-3xl font-bold mb-4" style="color: #10193b;">Buddy to Scale</h3>
+      <p class="text-lg mb-6" style="color: #10193b;">ขยายธุรกิจอย่างมีระบบและยั่งยืน พร้อมสร้างทีมและกระบวนการที่รองรับการเติบโต</p>
+      <div class="space-y-3">
+       <div class="flex items-start gap-3"><span style="color: #fac026;">✓</span>
+        <p style="color: #10193b;">สร้างระบบและกระบวนการที่รองรับการเติบโต</p>
+       </div>
+       <div class="flex items-start gap-3"><span style="color: #fac026;">✓</span>
+        <p style="color: #10193b;">พัฒนาทีมและผู้นำองค์กร</p>
+       </div>
+       <div class="flex items-start gap-3"><span style="color: #fac026;">✓</span>
+        <p style="color: #10193b;">ขยายตลาดและช่องทางการขาย</p>
+       </div>
+      </div>
+     </div>
+     <div class="w-full lg:w-1/3 flex flex-col items-center gap-4">
+      <div class="w-full aspect-square rounded-2xl flex items-center justify-center" style="background-color: #ffffff; border: 3px solid #fac026;"><span class="text-6xl">📈</span>
+      </div><button class="w-full px-6 py-3 text-white font-bold rounded-lg transition-all hover:opacity-90" style="background-color: #fac026;"> Scale กับ Buddy </button>
+     </div>
+    </div><!-- Service 4: Best Buddy -->
+    <div class="service-card flex flex-col lg:flex-row-reverse items-center gap-8">
+     <div class="w-full lg:w-2/3">
+      <h3 class="text-2xl lg:text-3xl font-bold mb-4" style="color: #10193b;">Best Buddy</h3>
+      <p class="text-lg mb-6" style="color: #10193b;">บริการแบบครบวงจรสำหรับองค์กรที่ต้องการพันธมิตรระยะยาว เพื่อการเติบโตที่ยั่งยืน</p>
+      <div class="space-y-3">
+       <div class="flex items-start gap-3"><span style="color: #fac026;">✓</span>
+        <p style="color: #10193b;">ที่ปรึกษาประจำองค์กร</p>
+       </div>
+       <div class="flex items-start gap-3"><span style="color: #fac026;">✓</span>
+        <p style="color: #10193b;">การพัฒนาอย่างต่อเนื่อง</p>
+       </div>
+       <div class="flex items-start gap-3"><span style="color: #fac026;">✓</span>
+        <p style="color: #10193b;">สิทธิพิเศษและบริการเสริม</p>
+       </div>
+      </div>
+     </div>
+     <div class="w-full lg:w-1/3 flex flex-col items-center gap-4">
+      <div class="w-full aspect-square rounded-2xl flex items-center justify-center" style="background-color: #ffffff; border: 3px solid #fac026;"><span class="text-6xl">⭐</span>
+      </div><button class="w-full px-6 py-3 text-white font-bold rounded-lg transition-all hover:opacity-90" style="background-color: #fac026;"> เป็น Best Buddy </button>
+     </div>
+    </div>
+   </div>
+  </section><!-- Testimonials Section -->
+  <section id="testimonials" class="py-16 px-8" style="background-color: #ffffff;">
+   <div class="max-w-7xl mx-auto">
+    <h2 class="text-3xl lg:text-4xl font-bold text-center mb-12" style="color: #10193b;">ความไว้วางใจจากลูกค้า</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+     <div class="p-8 rounded-2xl shadow-lg" style="background-color: #f8f8f8;">
+      <div class="flex gap-1 mb-4"><span style="color: #fac026;">⭐</span> <span style="color: #fac026;">⭐</span> <span style="color: #fac026;">⭐</span> <span style="color: #fac026;">⭐</span> <span style="color: #fac026;">⭐</span>
+      </div>
+      <p class="mb-6 text-lg" style="color: #10193b;">"Business Buddy ช่วยให้เราเห็นโอกาสใหม่ๆ ที่ไม่เคยคิดมาก่อน และวางแผนการเติบโตได้อย่างชัดเจน"</p>
+      <p class="font-semibold" style="color: #10193b;">คุณสมชาย ธนากุล</p>
+      <p class="text-sm" style="color: #10193b;">CEO, Tech Startup</p>
+     </div>
+     <div class="p-8 rounded-2xl shadow-lg" style="background-color: #f8f8f8;">
+      <div class="flex gap-1 mb-4"><span style="color: #fac026;">⭐</span> <span style="color: #fac026;">⭐</span> <span style="color: #fac026;">⭐</span> <span style="color: #fac026;">⭐</span> <span style="color: #fac026;">⭐</span>
+      </div>
+      <p class="mb-6 text-lg" style="color: #10193b;">"ไม่ใช่แค่ที่ปรึกษา แต่เป็นเพื่อนที่ทำงานร่วมกันจริงๆ เข้าใจปัญหาและช่วยแก้ไขได้ตรงจุด"</p>
+      <p class="font-semibold" style="color: #10193b;">คุณวิภา สุขสวัสดิ์</p>
+      <p class="text-sm" style="color: #10193b;">Owner, Retail Business</p>
+     </div>
+     <div class="p-8 rounded-2xl shadow-lg" style="background-color: #f8f8f8;">
+      <div class="flex gap-1 mb-4"><span style="color: #fac026;">⭐</span> <span style="color: #fac026;">⭐</span> <span style="color: #fac026;">⭐</span> <span style="color: #fac026;">⭐</span> <span style="color: #fac026;">⭐</span>
+      </div>
+      <p class="mb-6 text-lg" style="color: #10193b;">"Framework ที่ใช้งานง่ายและได้ผลจริง ทำให้ทีมเราทำงานได้อย่างมีทิศทางและมีประสิทธิภาพมากขึ้น"</p>
+      <p class="font-semibold" style="color: #10193b;">คุณประสิทธิ์ วงศ์ไทย</p>
+      <p class="text-sm" style="color: #10193b;">Managing Director, Manufacturing</p>
+     </div>
+    </div>
+   </div>
+  </section><!-- Success Stories Section -->
+  <section id="success" class="py-16 px-8" style="background-color: #f8f8f8;">
+   <div class="max-w-7xl mx-auto">
+    <h2 class="text-3xl lg:text-4xl font-bold text-center mb-12" style="color: #10193b;">Success Stories</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+     <div class="rounded-2xl overflow-hidden shadow-lg" style="background-color: #ffffff;">
+      <div class="h-48 flex items-center justify-center" style="background-color: #fac026;"><span class="text-6xl">📊</span>
+      </div>
+      <div class="p-6">
+       <h3 class="text-xl font-bold mb-3" style="color: #10193b;">เพิ่มยอดขาย 300% ใน 6 เดือน</h3>
+       <p style="color: #10193b;">ธุรกิจ E-commerce ที่ปรับกลยุทธ์และขยายช่องทางการขายด้วย Buddy Framework</p>
+      </div>
+     </div>
+     <div class="rounded-2xl overflow-hidden shadow-lg" style="background-color: #ffffff;">
+      <div class="h-48 flex items-center justify-center" style="background-color: #fac026;"><span class="text-6xl">🎯</span>
+      </div>
+      <div class="p-6">
+       <h3 class="text-xl font-bold mb-3" style="color: #10193b;">ลดต้นทุน 40% พร้อมเพิ่มคุณภาพ</h3>
+       <p style="color: #10193b;">โรงงานผลิตที่ปรับปรุงกระบวนการและสร้างระบบที่มีประสิทธิภาพ</p>
+      </div>
+     </div>
+     <div class="rounded-2xl overflow-hidden shadow-lg" style="background-color: #ffffff;">
+      <div class="h-48 flex items-center justify-center" style="background-color: #fac026;"><span class="text-6xl">🚀</span>
+      </div>
+      <div class="p-6">
+       <h3 class="text-xl font-bold mb-3" style="color: #10193b;">เปิดตลาดใหม่สำเร็จ</h3>
+       <p style="color: #10193b;">Startup ที่ขยายธุรกิจไปต่างประเทศด้วยการวางแผนที่รอบคอบ</p>
+      </div>
+     </div>
+     <div class="rounded-2xl overflow-hidden shadow-lg" style="background-color: #ffffff;">
+      <div class="h-48 flex items-center justify-center" style="background-color: #fac026;"><span class="text-6xl">💡</span>
+      </div>
+      <div class="p-6">
+       <h3 class="text-xl font-bold mb-3" style="color: #10193b;">สร้าง New S-Curve สำเร็จ</h3>
+       <p style="color: #10193b;">ธุรกิจดั้งเดิมที่เปลี่ยนผ่านสู่ Digital และสร้างรายได้ใหม่</p>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Contact Section -->
+  <section id="contact" class="min-h-full flex flex-col lg:flex-row" style="background-color: #ffffff;"><!-- Left Side - Form -->
+   <div class="w-full lg:w-1/2 flex items-center justify-center p-8 lg:p-16" style="background-color: #f8f8f8;">
+    <div class="max-w-xl w-full">
+     <h2 id="contact-title" class="text-3xl lg:text-4xl font-bold mb-6" style="color: #10193b;">Get Your Growth Checklist</h2>
+     <p class="text-lg mb-8" style="color: #10193b;">รับ Checklist: Find your Growth Path ฟรี! กรอกข้อมูลเพื่อรับคู่มือการวิเคราะห์เส้นทางการเติบโตของธุรกิจคุณ</p>
+     <form id="contact-form" class="space-y-6">
+      <div><label for="name" class="block text-sm font-semibold mb-2" style="color: #10193b;">ชื่อ-นามสกุล</label> <input type="text" id="name" name="name" required class="w-full px-4 py-3 rounded-lg border-2 focus:outline-none focus:border-opacity-80" style="border-color: #fac026; background-color: #ffffff;" placeholder="กรอกชื่อของคุณ">
+      </div>
+      <div><label for="email" class="block text-sm font-semibold mb-2" style="color: #10193b;">อีเมล</label> <input type="email" id="email" name="email" required class="w-full px-4 py-3 rounded-lg border-2 focus:outline-none focus:border-opacity-80" style="border-color: #fac026; background-color: #ffffff;" placeholder="your@email.com">
+      </div>
+      <div><label for="phone" class="block text-sm font-semibold mb-2" style="color: #10193b;">เบอร์โทรศัพท์</label> <input type="tel" id="phone" name="phone" required class="w-full px-4 py-3 rounded-lg border-2 focus:outline-none focus:border-opacity-80" style="border-color: #fac026; background-color: #ffffff;" placeholder="08X-XXX-XXXX">
+      </div>
+      <div><label for="company" class="block text-sm font-semibold mb-2" style="color: #10193b;">ชื่อบริษัท (ถ้ามี)</label> <input type="text" id="company" name="company" class="w-full px-4 py-3 rounded-lg border-2 focus:outline-none focus:border-opacity-80" style="border-color: #fac026; background-color: #ffffff;" placeholder="ชื่อบริษัทของคุณ">
+      </div><button type="submit" class="w-full px-8 py-4 text-white font-bold rounded-lg text-lg transition-all hover:opacity-90 shadow-lg" style="background-color: #fac026;"> รับ Checklist ฟรี </button>
+     </form>
+     <div id="form-message" class="mt-4 p-4 rounded-lg hidden"></div>
+    </div>
+   </div><!-- Right Side - Contact Info -->
+   <div class="w-full lg:w-1/2 flex items-center justify-center p-8 lg:p-16" style="background-color: #10193b;">
+    <div class="max-w-xl w-full text-white">
+     <h2 class="text-3xl lg:text-4xl font-bold mb-8">ติดต่อเรา</h2>
+     <div class="space-y-6 mb-12">
+      <div class="flex items-start gap-4"><span class="text-3xl">📧</span>
+       <div>
+        <p class="font-semibold mb-1">Email</p>
+        <p id="contact-email-display" class="opacity-90">contact@bizbud.com</p>
+       </div>
+      </div>
+      <div class="flex items-start gap-4"><span class="text-3xl">📱</span>
+       <div>
+        <p class="font-semibold mb-1">LINE Official</p>
+        <p class="opacity-90">@businessbuddy</p>
+       </div>
+      </div>
+      <div class="flex items-start gap-4"><span class="text-3xl">☎️</span>
+       <div>
+        <p class="font-semibold mb-1">โทรศัพท์</p>
+        <p class="opacity-90">02-XXX-XXXX</p>
+       </div>
+      </div>
+     </div>
+     <div class="p-8 rounded-2xl text-center" style="background-color: #ffffff;">
+      <p class="font-semibold mb-4" style="color: #10193b;">LINE QR Code</p>
+      <div class="w-48 h-48 mx-auto rounded-lg flex items-center justify-center" style="background-color: #f8f8f8;"><span class="text-6xl">📱</span>
+      </div>
+      <p class="mt-4 text-sm" style="color: #10193b;">สแกนเพื่อเพิ่มเพื่อน LINE</p>
+     </div>
+    </div>
+   </div>
+  </section>
+  <script>
+    const defaultConfig = {
+      hero_headline: "Your Growth Buddy for the New S-Curve",
+      hero_subheadline: "เพื่อนคู่คิด SME ไทยไว้วางใจ ในการสร้างการเติบโตใหม่ (New S-Curve) ที่ยั่งยืนทั้งธุรกิจ คน และสังคม",
+      hero_cta: "Find your Growth Path",
+      reasons_title: "🧭 เติบโตอย่างมีระบบ ง่ายกว่า เร็วกว่า และได้ผลจริง",
+      reasons_subtitle: "5 เหตุผลที่องค์กรเลือกสร้าง S-Curve ใหม่กับ Business Buddy™",
+      contact_title: "Get Your Growth Checklist",
+      contact_email: "contact@bizbud.com",
+      background_color: "#ffffff",
+      accent_color: "#fac026",
+      text_color: "#10193b",
+      font_family: "Prompt",
+      font_size: 16
+    };
 
-                <!-- Tier 2: Biz Scale -->
-                <div class="bg-white rounded-2xl p-8 shadow-xl card-hover border-2 border-biz-orange relative">
-                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                        <span class="bg-biz-orange text-white px-6 py-2 rounded-full text-sm font-semibold">แนะนำ</span>
-                    </div>
-                    
-                    <div class="text-center mb-6">
-                        <div class="w-16 h-16 bg-biz-orange rounded-full flex items-center justify-center mx-auto mb-4">
-                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
-                            </svg>
-                        </div>
-                        <h3 class="text-2xl font-bold text-biz-navy mb-2">Biz Scale</h3>
-                        <p class="text-gray-600 mb-4">New BU Creation & Market Expansion</p>
-                        <div class="text-3xl font-bold text-biz-orange mb-2">฿XX,XXX</div>
-                        <p class="text-sm text-gray-500">6-12 เดือน</p>
-                    </div>
-                    
-                    <ul class="space-y-3 mb-8">
-                        <li class="flex items-center">
-                            <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
-                            </svg>
-                            <span class="text-gray-700">New S-Curve Strategy</span>
-                        </li>
-                        <li class="flex items-center">
-                            <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
-                            </svg>
-                            <span class="text-gray-700">Market Research & Validation</span>
-                        </li>
-                        <li class="flex items-center">
-                            <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
-                            </svg>
-                            <span class="text-gray-700">Co-Pilot Implementation</span>
-                        </li>
-                        <li class="flex items-center">
-                            <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
-                            </svg>
-                            <span class="text-gray-700">Performance Tracking</span>
-                        </li>
-                    </ul>
-                    
-                    <button class="w-full bg-biz-orange text-white py-3 rounded-full font-semibold hover:bg-orange-600 transition-colors">
-                        เลือกแพ็กเกจนี้
-                    </button>
-                </div>
+    async function onConfigChange(config) {
+      const heroHeadline = document.getElementById('hero-headline');
+      const heroSubheadline = document.getElementById('hero-subheadline');
+      const heroCta = document.getElementById('hero-cta-btn');
+      const reasonsTitle = document.getElementById('reasons-title');
+      const reasonsSubtitle = document.getElementById('reasons-subtitle');
+      const contactTitle = document.getElementById('contact-title');
+      const contactEmailDisplay = document.getElementById('contact-email-display');
 
-                <!-- Tier 3: Biz Sustain -->
-                <div class="bg-white rounded-2xl p-8 shadow-lg card-hover border-2 border-gray-100">
-                    <div class="text-center mb-6">
-                        <div class="w-16 h-16 bg-biz-navy rounded-full flex items-center justify-center mx-auto mb-4">
-                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-                            </svg>
-                        </div>
-                        <h3 class="text-2xl font-bold text-biz-navy mb-2">Biz Sustain</h3>
-                        <p class="text-gray-600 mb-4">Long-term Model & Renewable Growth</p>
-                        <div class="text-3xl font-bold text-biz-orange mb-2">฿XX,XXX</div>
-                        <p class="text-sm text-gray-500">12+ เดือน</p>
-                    </div>
-                    
-                    <ul class="space-y-3 mb-8">
-                        <li class="flex items-center">
-                            <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
-                            </svg>
-                            <span class="text-gray-700">Sustainable Growth Model</span>
-                        </li>
-                        <li class="flex items-center">
-                            <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
-                            </svg>
-                            <span class="text-gray-700">Team Development</span>
-                        </li>
-                        <li class="flex items-center">
-                            <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
-                            </svg>
-                            <span class="text-gray-700">Innovation Framework</span>
-                        </li>
-                    </ul>
-                    
-                    <button class="w-full bg-gray-100 text-biz-navy py-3 rounded-full font-semibold hover:bg-gray-200 transition-colors">
-                        เลือกแพ็กเกจนี้
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
+      if (heroHeadline) heroHeadline.textContent = config.hero_headline || defaultConfig.hero_headline;
+      if (heroSubheadline) heroSubheadline.textContent = config.hero_subheadline || defaultConfig.hero_subheadline;
+      if (heroCta) heroCta.textContent = config.hero_cta || defaultConfig.hero_cta;
+      if (reasonsTitle) reasonsTitle.textContent = config.reasons_title || defaultConfig.reasons_title;
+      if (reasonsSubtitle) reasonsSubtitle.textContent = config.reasons_subtitle || defaultConfig.reasons_subtitle;
+      if (contactTitle) contactTitle.textContent = config.contact_title || defaultConfig.contact_title;
+      if (contactEmailDisplay) contactEmailDisplay.textContent = config.contact_email || defaultConfig.contact_email;
 
-    <!-- Success Stories Section -->
-    <section id="success" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-biz-navy mb-4">
-                    Project Reference: พลิกธุรกิจด้วย New Model
-                </h2>
-                <p class="text-xl text-gray-600">ความสำเร็จของลูกค้าคือความภาคภูมิใจของเรา</p>
-            </div>
-            
-            <div class="grid md:grid-cols-2 gap-12 mb-16">
-                <!-- Case Study 1 -->
-                <div class="bg-gray-50 rounded-2xl p-8">
-                    <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 bg-biz-orange rounded-full flex items-center justify-center mr-4">
-                            <span class="text-white font-bold text-lg">A</span>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-biz-navy">Traditional Manufacturing</h3>
-                            <p class="text-gray-600">เพิ่มรายได้ 300% ใน 8 เดือน</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-700 mb-4">
-                        "จากโรงงานผลิตแบบดั้งเดิม เราช่วยสร้าง Digital Platform ใหม่ 
-                        ที่เชื่อมต่อกับลูกค้าโดยตรง ทำให้สามารถขยายตลาดและเพิ่มมาร์จิ้นได้อย่างมีนัยสำคัญ"
-                    </p>
-                    <div class="flex items-center text-biz-orange font-semibold">
-                        <span>อ่านเพิ่มเติม</span>
-                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                        </svg>
-                    </div>
-                </div>
+      const backgroundColor = config.background_color || defaultConfig.background_color;
+      const accentColor = config.accent_color || defaultConfig.accent_color;
+      const textColor = config.text_color || defaultConfig.text_color;
+      const fontFamily = config.font_family || defaultConfig.font_family;
+      const fontSize = config.font_size || defaultConfig.font_size;
 
-                <!-- Case Study 2 -->
-                <div class="bg-gray-50 rounded-2xl p-8">
-                    <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 bg-biz-navy rounded-full flex items-center justify-center mr-4">
-                            <span class="text-white font-bold text-lg">B</span>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-biz-navy">Retail Chain</h3>
-                            <p class="text-gray-600">ขยายสาขาจาก 5 เป็น 25 สาขา</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-700 mb-4">
-                        "ด้วยกลยุทธ์ Franchise Model ใหม่และระบบ Operations ที่มีประสิทธิภาพ 
-                        ทำให้สามารถขยายธุรกิจได้อย่างรวดเร็วและยั่งยืน"
-                    </p>
-                    <div class="flex items-center text-biz-orange font-semibold">
-                        <span>อ่านเพิ่มเติม</span>
-                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                        </svg>
-                    </div>
-                </div>
-            </div>
+      document.body.style.fontFamily = `${fontFamily}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
+      document.body.style.fontSize = `${fontSize}px`;
 
-            <!-- Testimonials -->
-            <div class="bg-biz-navy rounded-2xl p-8 text-white text-center">
-                <div class="max-w-4xl mx-auto">
-                    <svg class="w-12 h-12 text-biz-orange mx-auto mb-6" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
-                    </svg>
-                    <blockquote class="text-xl md:text-2xl font-medium mb-6 leading-relaxed">
-                        "Business Buddy ไม่ใช่แค่ที่ปรึกษา แต่เป็น Co-Pilot ที่ลงมือทำจริง 
-                        ช่วยให้เราสร้าง New S-Curve ได้สำเร็จเกินความคาดหมาย"
-                    </blockquote>
-                    <div class="flex items-center justify-center space-x-4">
-                        <div class="w-12 h-12 bg-biz-orange rounded-full flex items-center justify-center">
-                            <span class="font-bold">คุณ ก</span>
-                        </div>
-                        <div class="text-left">
-                            <p class="font-semibold">คุณกิตติ์ สมชาย</p>
-                            <p class="text-gray-300">CEO, ABC Manufacturing</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+      const buttons = document.querySelectorAll('button[style*="background-color"]');
+      buttons.forEach(btn => {
+        btn.style.backgroundColor = accentColor;
+      });
 
-    <!-- About Us Section -->
-    <section id="about" class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-2 gap-16 items-center">
-                <div>
-                    <h2 class="text-4xl font-bold text-biz-navy mb-6">
-                        เพื่อนคู่คิด SME ไทย
-                    </h2>
-                    <p class="text-xl text-gray-600 mb-8 leading-relaxed">
-                        <strong>Mission:</strong> เพื่อนคู่คิด SME ไทยไว้วางใจในการสร้างการเติบโตใหม่ (New S-Curve) 
-                        ที่ยั่งยืนทั้งธุรกิจ คน และสังคม
-                    </p>
-                    
-                    <div class="space-y-6 mb-8">
-                        <div class="flex items-start">
-                            <div class="w-8 h-8 bg-biz-orange rounded-full flex items-center justify-center mr-4 mt-1">
-                                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="text-lg font-semibold text-biz-navy mb-2">Execution Focus</h3>
-                                <p class="text-gray-600">เราไม่ใช่แค่ที่ปรึกษา แต่เป็น Co-Pilot ที่ลงมือทำจริงร่วมกับคุณ</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="w-8 h-8 bg-biz-orange rounded-full flex items-center justify-center mr-4 mt-1">
-                                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="text-lg font-semibold text-biz-navy mb-2">Partnership Approach</h3>
-                                <p class="text-gray-600">เราเดินทางไปด้วยกันจนถึงเส้นชัย ไม่ทิ้งคุณไว้กลางทาง</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="w-8 h-8 bg-biz-orange rounded-full flex items-center justify-center mr-4 mt-1">
-                                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="text-lg font-semibold text-biz-navy mb-2">Sustainable Growth</h3>
-                                <p class="text-gray-600">มุ่งเน้นการเติบโตที่ยั่งยืนทั้งธุรกิจ คน และสังคม</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Social Media Links -->
-                    <div class="flex items-center space-x-4">
-                        <span class="text-gray-600 font-medium">ติดตามเรา:</span>
-                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors">
-                            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                            </svg>
-                        </a>
-                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-pink-600 rounded-full flex items-center justify-center hover:bg-pink-700 transition-colors">
-                            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987 6.62 0 11.987-5.367 11.987-11.987C24.014 5.367 18.637.001 12.017.001zM8.449 16.988c-1.297 0-2.448-.49-3.323-1.297C4.198 14.895 3.708 13.744 3.708 12.447s.49-2.448 1.297-3.323C5.902 8.198 7.053 7.708 8.35 7.708s2.448.49 3.323 1.297c.897.875 1.387 2.026 1.387 3.323s-.49 2.448-1.297 3.323c-.875.897-2.026 1.387-3.323 1.387zm7.718 0c-1.297 0-2.448-.49-3.323-1.297-.897-.875-1.387-2.026-1.387-3.323s.49-2.448 1.297-3.323c.875-.897 2.026-1.387 3.323-1.387s2.448.49 3.323 1.297c.897.875 1.387 2.026 1.387 3.323s-.49 2.448-1.297 3.323c-.875.897-2.026 1.387-3.323 1.387z"/>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="text-center">
-                    <div class="bg-white rounded-2xl p-8 shadow-lg">
-                        <div class="w-32 h-32 bg-gradient-to-br from-biz-orange to-biz-navy rounded-full mx-auto mb-6 flex items-center justify-center">
-                            <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
-                            </svg>
-                        </div>
-                        <h3 class="text-2xl font-bold text-biz-navy mb-4">Ready to Scale Up?</h3>
-                        <p class="text-gray-600 mb-6">มาคุยกันว่าเราจะช่วยสร้าง New S-Curve ให้กับธุรกิจคุณได้อย่างไร</p>
-                        <button class="bg-biz-orange text-white px-8 py-3 rounded-full font-semibold hover:bg-orange-600 transition-colors">
-                            นัดหมายปรึกษาฟรี
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-biz-navy mb-4">
-                    พร้อมเริ่มต้นการเติบโตใหม่แล้วหรือยัง?
-                </h2>
-                <p class="text-xl text-gray-600">รับ E-book ฟรี และเริ่มต้นการวางแผน New S-Curve ของคุณวันนี้</p>
-            </div>
-            
-            <div class="grid lg:grid-cols-2 gap-16 items-center">
-                <!-- Lead Magnet -->
-                <div class="bg-gradient-to-br from-biz-orange to-orange-600 rounded-2xl p-8 text-white">
-                    <div class="flex items-center mb-6">
-                        <div class="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mr-4">
-                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h3 class="text-2xl font-bold mb-2">New S-Curve Checklist</h3>
-                            <p class="text-orange-100">E-book ฟรี 25 หน้า</p>
-                        </div>
-                    </div>
-                    
-                    <ul class="space-y-3 mb-8">
-                        <li class="flex items-center">
-                            <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
-                            </svg>
-                            <span>Self-Assessment Tools</span>
-                        </li>
-                        <li class="flex items-center">
-                            <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
-                            </svg>
-                            <span>Growth Strategy Framework</span>
-                        </li>
-                        <li class="flex items-center">
-                            <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
-                            </svg>
-                            <span>Implementation Roadmap</span>
-                        </li>
-                    </ul>
-                    
-                    <form class="space-y-4" onsubmit="handleLeadForm(event)">
-                        <div>
-                            <label for="lead-name" class="block text-sm font-medium mb-2">ชื่อ - นามสกุล</label>
-                            <input type="text" id="lead-name" name="name" required class="w-full px-4 py-3 rounded-lg bg-white/20 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50" placeholder="กรอกชื่อ-นามสกุลของคุณ">
-                        </div>
-                        <div>
-                            <label for="lead-phone" class="block text-sm font-medium mb-2">เบอร์โทร (+66)</label>
-                            <div class="flex items-stretch">
-                                <span class="inline-flex items-center px-3 rounded-l-lg bg-white/20 border border-r-0 border-white/30 text-white/80 text-sm">+66</span>
-                                <input type="tel" id="lead-phone" name="phone" required class="w-full px-4 py-3 rounded-r-lg bg-white/20 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50" placeholder="ระบุเบอร์โทร (ไม่ต้องใส่ 0 นำหน้า)">
-                            </div>
-                        </div>
-                        <div>
-                            <label for="lead-email" class="block text-sm font-medium mb-2">อีเมล</label>
-                            <input type="email" id="lead-email" name="email" required class="w-full px-4 py-3 rounded-lg bg-white/20 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50" placeholder="your@email.com">
-                        </div>
-                        <div>
-                            <label for="lead-company" class="block text-sm font-medium mb-2">ชื่อบริษัท</label>
-                            <input type="text" id="lead-company" name="company" required class="w-full px-4 py-3 rounded-lg bg-white/20 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50" placeholder="ชื่อบริษัทของคุณ">
-                        </div>
-                        <button type="submit" class="w-full bg-white text-biz-orange py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-                            ดาวน์โหลด E-book ฟรี
-                        </button>
-                        <div class="text-sm text-white/80 text-center">
-                            ดูข้อมูลที่บันทึกใน Google Sheet: 
-                            <a href="https://docs.google.com/spreadsheets/d/1q5mDEwRO3JxcPzWYU6ITtEJA0OcC1t8gfRO59Lt7nn0/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="underline font-medium">เปิดลิงก์</a>
-                        </div>
-                    </form>
-                </div>
-                
-                <!-- Contact Info & QR -->
-                <div class="text-center">
-                    <div class="bg-gray-50 rounded-2xl p-8 mb-8">
-                        <h3 class="text-2xl font-bold text-biz-navy mb-6">จองคิวปรึกษาฟรี</h3>
-                        
-                        <!-- QR Code -->
-                        <div class="w-48 h-48 bg-white border-2 border-gray-200 rounded-2xl mx-auto mb-6 flex items-center justify-center overflow-hidden">
-                            <img src="assets/images/line-qr.jpg" alt="Line Official QR Code" class="w-full h-full object-cover">
-                        </div>
-                        
-                        <p class="text-gray-600 mb-6">สแกน QR Code เพื่อ Add Line และจองคิวปรึกษาฟรี</p>
-                        
-                        <button class="bg-green-500 text-white px-8 py-3 rounded-full font-semibold hover:bg-green-600 transition-colors flex items-center mx-auto">
-                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12.017.572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.070 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
-                            </svg>
-                            Add Line Book Que จองคิว
-                        </button>
-                    </div>
-                    
-                    <div class="text-sm text-gray-500 space-y-2">
-                        <p>📞 Tel: 099-145-9642</p>
-                        <p>📧 Email: putthipat.lapat@gmail.com</p>
-                        <p>🕒 เวลาทำการ: จันทร์-ศุกร์ 9:00-18:00</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-biz-navy text-white py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center">
-                <div class="flex items-center justify-center space-x-3 mb-6">
-                    <img src="assets/images/bizbud-logo.png" alt="Business Buddy Logo" class="w-10 h-10 object-contain">
-                    <span class="text-2xl font-bold">Business Buddy</span>
-                </div>
-                <p class="text-gray-300 mb-6 max-w-2xl mx-auto">
-                    เพื่อนคู่คิด SME ไทยในการสร้างการเติบโตใหม่ที่ยั่งยืน
-                </p>
-                <div class="border-t border-gray-600 pt-6">
-                    <p class="text-gray-400 text-sm">
-                        © 2024 Business Buddy. All rights reserved. | Privacy Policy | Terms of Service
-                    </p>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Carousel functionality
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.carousel-slide');
-        const totalSlides = slides.length;
-        let autoPlayInterval;
-
-        function updateCarousel() {
-            const track = document.getElementById('carouselTrack');
-            const indicators = document.querySelectorAll('.carousel-indicator');
-            
-            track.style.transform = `translateX(-${currentSlide * 100}%)`;
-            
-            indicators.forEach((indicator, index) => {
-                if (index === currentSlide) {
-                    indicator.classList.add('active');
-                } else {
-                    indicator.classList.remove('active');
-                }
-            });
+      const headings = document.querySelectorAll('h1, h2, h3');
+      headings.forEach(heading => {
+        if (heading.style.color === 'rgb(16, 25, 59)' || heading.style.color === '#10193b') {
+          heading.style.color = textColor;
         }
+      });
+    }
 
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % totalSlides;
-            updateCarousel();
-            resetAutoPlay();
-        }
-
-        function prevSlide() {
-            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-            updateCarousel();
-            resetAutoPlay();
-        }
-
-        function goToSlide(index) {
-            currentSlide = index;
-            updateCarousel();
-            resetAutoPlay();
-        }
-
-        function startAutoPlay() {
-            autoPlayInterval = setInterval(nextSlide, 5000);
-        }
-
-        function resetAutoPlay() {
-            clearInterval(autoPlayInterval);
-            startAutoPlay();
-        }
-
-        // Start auto-play when page loads (respect user's motion preference)
-        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (!prefersReducedMotion) {
-            startAutoPlay();
-        } else {
-            // For users who prefer reduced motion, still allow manual navigation
-            console.log('Auto-play disabled due to prefers-reduced-motion setting');
-        }
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Book Queue Button Handler
-        function handleBookQueue() {
-            const lineButton = document.querySelector('.bg-green-500');
-            if (lineButton) {
-                lineButton.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                lineButton.classList.add('animate-pulse');
-                setTimeout(() => lineButton.classList.remove('animate-pulse'), 2000);
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities: (config) => ({
+          recolorables: [
+            {
+              get: () => config.background_color || defaultConfig.background_color,
+              set: (value) => {
+                config.background_color = value;
+                window.elementSdk.setConfig({ background_color: value });
+              }
+            },
+            {
+              get: () => config.accent_color || defaultConfig.accent_color,
+              set: (value) => {
+                config.accent_color = value;
+                window.elementSdk.setConfig({ accent_color: value });
+              }
+            },
+            {
+              get: () => config.text_color || defaultConfig.text_color,
+              set: (value) => {
+                config.text_color = value;
+                window.elementSdk.setConfig({ text_color: value });
+              }
             }
-        }
+          ],
+          borderables: [],
+          fontEditable: {
+            get: () => config.font_family || defaultConfig.font_family,
+            set: (value) => {
+              config.font_family = value;
+              window.elementSdk.setConfig({ font_family: value });
+            }
+          },
+          fontSizeable: {
+            get: () => config.font_size || defaultConfig.font_size,
+            set: (value) => {
+              config.font_size = value;
+              window.elementSdk.setConfig({ font_size: value });
+            }
+          }
+        }),
+        mapToEditPanelValues: (config) => new Map([
+          ["hero_headline", config.hero_headline || defaultConfig.hero_headline],
+          ["hero_subheadline", config.hero_subheadline || defaultConfig.hero_subheadline],
+          ["hero_cta", config.hero_cta || defaultConfig.hero_cta],
+          ["reasons_title", config.reasons_title || defaultConfig.reasons_title],
+          ["reasons_subtitle", config.reasons_subtitle || defaultConfig.reasons_subtitle],
+          ["contact_title", config.contact_title || defaultConfig.contact_title],
+          ["contact_email", config.contact_email || defaultConfig.contact_email]
+        ])
+      });
+    }
 
-        // Package Selection Handler
-        function handlePackageSelection(packageName) {
-            // Show modern notification instead of alert
-            showNotification(`คุณเลือกแพ็กเกจ: ${packageName}`, 'กรุณาติดต่อเราผ่าน Line หรือกรอกฟอร์มด้านล่างเพื่อรับคำปรึกษาเพิ่มเติม');
-            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
-        }
+
+
+    // Navigation functionality
+    const navbar = document.getElementById('navbar');
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // Mobile menu toggle
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('active');
+    });
+
+    // Smooth scroll for navigation links
+    navLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
         
-        // Toast Notification System
-        function showNotification(title, message) {
-            // Create notification element
-            const notification = document.createElement('div');
-            notification.className = 'fixed top-20 right-4 bg-white border-2 border-biz-orange rounded-lg shadow-xl p-6 z-50 max-w-sm animate-slide-in';
-            notification.innerHTML = `
-                <div class="flex items-start">
-                    <div class="flex-shrink-0">
-                        <svg class="w-6 h-6 text-biz-orange" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
-                        </svg>
-                    </div>
-                    <div class="ml-3 flex-1">
-                        <h3 class="text-lg font-semibold text-biz-navy">${title}</h3>
-                        <p class="mt-1 text-sm text-gray-600">${message}</p>
-                    </div>
-                    <button onclick="this.parentElement.parentElement.remove()" class="ml-4 text-gray-400 hover:text-gray-600">
-                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
-                        </svg>
-                    </button>
-                </div>
-            `;
-            
-            // Add to page
-            document.body.appendChild(notification);
-            
-            // Auto-remove after 5 seconds
-            setTimeout(() => {
-                notification.style.opacity = '0';
-                notification.style.transform = 'translateX(100%)';
-                setTimeout(() => notification.remove(), 300);
-            }, 5000);
+        if (targetSection) {
+          const offsetTop = targetSection.offsetTop - 80; // Account for fixed navbar
+          window.scrollTo({
+            top: offsetTop,
+            behavior: 'smooth'
+          });
         }
 
-        // Add click handlers to navigation "Book Queue" button
-        document.addEventListener('DOMContentLoaded', function() {
-            const navBookBtn = document.querySelector('nav button');
-            if (navBookBtn) {
-                navBookBtn.addEventListener('click', handleBookQueue);
-            }
+        // Close mobile menu after clicking
+        mobileMenu.classList.remove('active');
+      });
+    });
 
-            // Hero Book Queue button
-            const heroBookBtn = document.querySelector('.pulse-animation');
-            if (heroBookBtn) {
-                heroBookBtn.addEventListener('click', handleBookQueue);
-            }
+    const contactForm = document.getElementById('contact-form');
+    const formMessage = document.getElementById('form-message');
 
-            // Package selection buttons - extract names from headings for consistency
-            const packageButtons = document.querySelectorAll('#services button');
-            packageButtons.forEach((btn) => {
-                btn.addEventListener('click', function() {
-                    // Find the package name from the nearest h3 heading
-                    const packageCard = this.closest('.bg-white');
-                    const packageName = packageCard.querySelector('h3').textContent.trim();
-                    handlePackageSelection(packageName);
-                });
-            });
-
-            // About section book button
-            const aboutBookBtn = document.querySelector('#about button');
-            if (aboutBookBtn) {
-                aboutBookBtn.addEventListener('click', handleBookQueue);
-            }
-
-            // Line button click handler
-            const lineBtn = document.querySelector('.bg-green-500');
-            if (lineBtn) {
-                lineBtn.addEventListener('click', function() {
-                    showNotification('Add Line Official', 'กรุณาสแกน QR Code ด้านบนเพื่อเพิ่ม Line Official Account และจองคิวปรึกษาฟรี');
-                });
-            }
-        });
-
-        // Lead form handler with Google Sheets integration
-        async function handleLeadForm(event) {
-            event.preventDefault();
-            
-            const formData = new FormData(event.target);
-            const name = formData.get('name');
-            const phoneInput = (formData.get('phone') || '').toString().trim();
-            const email = formData.get('email');
-            const company = formData.get('company');
-            
-            // Normalize Thai phone number to +66 format
-            function normalizeThaiPhone(input) {
-                if (!input) return '';
-                const digits = input.replace(/[^0-9+]/g, '');
-                if (digits.startsWith('+66')) return digits;
-                if (digits.startsWith('0')) return '+66' + digits.slice(1);
-                if (digits.startsWith('66')) return '+' + digits;
-                return '+66' + digits;
-            }
-            const phone = normalizeThaiPhone(phoneInput);
-            
-            // Google Sheets Web App URL - IMPORTANT: Replace before deployment
-            // See docs/GOOGLE_SHEETS_SETUP.md for setup instructions
-            const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbxisSu7w0DN_zb-erIHYSCQsqfuWPuCe8qMYdHuwt-5bzvGsYgQa1JOeDM85p_OQqfx/exec';
-            
-            // Validate that URL has been configured
-            if (GOOGLE_SHEETS_URL === 'https://script.google.com/macros/s/AKfycbxisSu7w0DN_zb-erIHYSCQsqfuWPuCe8qMYdHuwt-5bzvGsYgQa1JOeDM85p_OQqfx/exec') {
-                console.warn('⚠️ Google Sheets integration not configured. Please follow setup guide in docs/GOOGLE_SHEETS_SETUP.md');
-            }
-            
-            try {
-                // Send data to Google Sheets
-                // Note: 'no-cors' mode is required for Google Apps Script but prevents response validation
-                // This is a limitation of Google Sheets integration. For better error handling, consider:
-                // 1. Using a proxy server, 2. Netlify/Formspree forms, or 3. Custom backend
-                const response = await fetch(GOOGLE_SHEETS_URL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        name: name,
-                        phone: phone,
-                        email: email,
-                        company: company,
-                        timestamp: new Date().toISOString()
-                    })
-                });
-                
-                // Show success message
-                const form = event.target;
-                form.innerHTML = `
-                    <div class="text-center py-8">
-                        <svg class="w-16 h-16 text-white mx-auto mb-4" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
-                        </svg>
-                        <h3 class="text-xl font-bold mb-2">ขอบคุณ ${name}!</h3>
-                        <p class="text-white/90 mb-4">E-book ได้ถูกส่งไปยัง ${email} แล้ว</p>
-                        <p class="text-sm text-white/70">กรุณาตรวจสอบอีเมลของคุณ (รวมถึงโฟลเดอร์ Spam)</p>
-                    </div>
-                `;
-            } catch (error) {
-                console.error('Error submitting form:', error);
-                // Show honest message about submission status
-                const form = event.target;
-                form.innerHTML = `
-                    <div class="text-center py-8">
-                        <svg class="w-16 h-16 text-white mx-auto mb-4" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
-                        </svg>
-                        <h3 class="text-xl font-bold mb-2">ขอบคุณ ${name}!</h3>
-                        <p class="text-white/90 mb-4">เราได้รับข้อมูลของคุณแล้ว</p>
-                        <p class="text-sm text-white/70">หากต้องการติดต่อด่วน กรุณาสแกน QR Code ด้านล่าง</p>
-                        <p class="text-xs text-white/60 mt-4">Note: Form submission may be pending. Please also contact us via Line QR code for immediate response.</p>
-                    </div>
-                `;
-            }
-        }
-
-        // Add scroll effect to navigation
-        window.addEventListener('scroll', function() {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 100) {
-                nav.classList.add('shadow-lg');
-            } else {
-                nav.classList.remove('shadow-lg');
-            }
-        });
-
-        // Add animation on scroll for cards
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observe all cards
-        document.querySelectorAll('.card-hover').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(30px)';
-            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(card);
-        });
-    </script>
-</body>
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      
+      formMessage.textContent = `ขอบคุณคุณ${name}! เราได้รับข้อมูลของคุณแล้ว Checklist จะถูกส่งไปที่ ${email} ในไม่ช้า`;
+      formMessage.style.backgroundColor = '#f0fdf4';
+      formMessage.style.color = '#166534';
+      formMessage.classList.remove('hidden');
+      
+      contactForm.reset();
+      
+      setTimeout(() => {
+        formMessage.classList.add('hidden');
+      }, 5000);
+    });
+    
+    // Carousel functionality
+    const carouselTrack = document.getElementById('carouselTrack');
+    const carouselDots = document.querySelectorAll('.carousel-dot');
+    let currentIndex = 0;
+    
+    function updateCarousel(index) {
+      currentIndex = index;
+      carouselTrack.style.transform = `translateX(-${index * 100}%)`;
+      
+      // Update dots
+      carouselDots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+      });
+    }
+    
+    function nextSlide() {
+      updateCarousel((currentIndex + 1) % 4);
+    }
+    
+    // Add click handlers to dots
+    carouselDots.forEach((dot, index) => {
+      dot.addEventListener('click', () => updateCarousel(index));
+    });
+    
+    // Auto advance slides every 3 seconds
+    setInterval(nextSlide, 3000);
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'999a71a5c6b5272e',t:'MTc2MjMyNTcxMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
